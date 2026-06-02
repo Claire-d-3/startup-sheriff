@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
+  get "projects/index"
+  get "projects/show"
   devise_for :users
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :projects do
-   resources :cards, only: [:show, :update, :edit, :create]
+   resources :cards, only: [:update, :edit, :create]
   end
 
   resources :projects do
