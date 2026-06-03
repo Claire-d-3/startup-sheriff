@@ -1,19 +1,14 @@
 <div class="ss-auth-page">
-  <%= render "shared/navbar" %>
-
-  <div class="ss-cloud ss-cloud-one"></div>
-  <div class="ss-cloud ss-cloud-two"></div>
-
   <div class="container ss-auth-container">
     <div class="ss-auth-card">
       <div class="ss-auth-badge">
         ★
       </div>
 
-      <h1>Welcome back</h1>
+      <h1>Back in Town</h1>
 
       <p>
-        Log in and continue validating your startup ideas.
+        Log in and continue your startup interrogation.
       </p>
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "ss-auth-form" }) do |f| %>

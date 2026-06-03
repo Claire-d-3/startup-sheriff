@@ -1,151 +1,24 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
-<%= render "shared/navbar" %>
+<div class="ss-page">
+  <section class="ss-hero-home">
+    <div class="container ss-hero-container">
+      <h1 class="ss-hero-title">
+        <span class="ss-hero-title-line">Are you ready for an interrogation</span>
+        <span class="ss-hero-title-line">by the Sheriff?</span>
+      </h1>
 
-<main class="ss-page">
-  <section class="ss-hero">
-    <div class="container">
-      <div class="row align-items-center g-5">
-        <div class="col-lg-6">
-          <div class="ss-kicker">
-            AI Startup Validation
-          </div>
+      <div class="ss-hero-body">
+        <aside class="ss-hero-side ss-hero-side--left">
+          <%= render "shared/topic_cards", side: :left %>
+        </aside>
 
-          <h1 class="ss-hero-title">
-            Let the Sheriff judge your startup idea before the market does.
-          </h1>
-
-          <p class="ss-hero-text">
-            Startup Sheriff helps founders validate startup ideas with AI. Get direct feedback on your problem, market, customer, competition, moat, pricing and next steps.
-          </p>
-
-          <div class="d-flex flex-wrap gap-3 mt-4">
-            <%= link_to "Validate my idea", new_user_registration_path, class: "btn ss-btn-primary btn-lg" %>
-            <%= link_to "Sign in", new_user_session_path, class: "btn ss-btn-outline btn-lg" %>
-          </div>
-
-          <div class="ss-trust-row">
-            <div>
-              <strong>Problem</strong>
-              <span>Pain or nice-to-have?</span>
-            </div>
-
-            <div>
-              <strong>Market</strong>
-              <span>Big enough?</span>
-            </div>
-
-            <div>
-              <strong>Moat</strong>
-              <span>Defensible?</span>
-            </div>
-          </div>
+        <div class="ss-hero-cta">
+          <%= link_to "Yes, I am ready", new_user_registration_path, class: "ss-btn-primary ss-btn-ready" %>
         </div>
 
-        <div class="col-lg-6">
-          <div class="ss-hero-visual">
-            <div class="ss-orbit"></div>
-
-            <div class="ss-chat-card">
-              <div class="ss-chat-header">
-                <%= image_tag "sheriff_charakter.jpg", class: "ss-chat-avatar", alt: "Startup Sheriff" %>
-
-                <div>
-                  <strong>Sheriff AI</strong>
-                  <span>Startup judge online</span>
-                </div>
-              </div>
-
-              <div class="ss-chat-bubble ss-ai">
-                Your idea sounds interesting. But is this a real pain or just a nice-to-have?
-              </div>
-
-              <div class="ss-chat-bubble ss-user">
-                I want to build an AI tool for founders.
-              </div>
-
-              <div class="ss-chat-bubble ss-ai">
-                Then prove urgency, budget and a broken workflow first.
-              </div>
-
-              <div class="ss-score-box">
-                <span>Validation Score</span>
-                <strong>72 / 100</strong>
-              </div>
-            </div>
-
-            <%= image_tag "sheriff_charakter.jpg", class: "ss-sheriff-character", alt: "Startup Sheriff character" %>
-          </div>
-        </div>
+        <aside class="ss-hero-side ss-hero-side--right">
+          <%= render "shared/topic_cards", side: :right %>
+        </aside>
       </div>
     </div>
   </section>
-
-  <section id="how-it-works" class="ss-section">
-    <div class="container">
-      <div class="text-center mb-5">
-        <h2>How it works</h2>
-        <p>Simple. Direct. No founder fantasy.</p>
-      </div>
-
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="ss-feature-card">
-            <span>01</span>
-            <h3>Describe your idea</h3>
-            <p>Tell the AI what you want to build, who it is for and how you plan to make money.</p>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="ss-feature-card">
-            <span>02</span>
-            <h3>Get judged</h3>
-            <p>The Sheriff checks problem strength, market, competition, pricing and risks.</p>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="ss-feature-card">
-            <span>03</span>
-            <h3>Know your next move</h3>
-            <p>Receive a concrete validation plan instead of vague startup advice.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="features" class="ss-section ss-section-alt">
-    <div class="container">
-      <div class="row align-items-center g-5">
-        <div class="col-lg-5">
-          <h2>Built for early-stage founders who need truth fast.</h2>
-          <p>
-            Most startup ideas do not fail because the founder cannot build. They fail because the founder builds the wrong thing.
-          </p>
-        </div>
-
-        <div class="col-lg-7">
-          <div class="ss-feature-grid">
-            <div class="ss-mini-card">AI idea critique</div>
-            <div class="ss-mini-card">Market analysis</div>
-            <div class="ss-mini-card">Competitor mapping</div>
-            <div class="ss-mini-card">Pricing logic</div>
-            <div class="ss-mini-card">MVP scope</div>
-            <div class="ss-mini-card">Validation checklist</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="pricing" class="ss-section text-center">
-    <div class="container">
-      <h2>Start with one idea.</h2>
-      <p>Validate before wasting months building.</p>
-
-      <%= link_to "Get started free", new_user_registration_path, class: "btn ss-btn-primary btn-lg mt-3" %>
-    </div>
-  </section>
-</main>
+</div>

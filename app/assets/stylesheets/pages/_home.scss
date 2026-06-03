@@ -1,1 +1,256 @@
-// Specific CSS for your home-page
+.ss-hero-home {
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+  padding: 96px 0 20px;
+  box-sizing: border-box;
+}
+
+.ss-hero-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: 1320px;
+}
+
+.ss-hero-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  width: 100%;
+  margin: 0 0 clamp(12px, 2vh, 24px);
+  text-align: center;
+  font-family: "Rye", "Georgia", serif;
+  font-weight: 400;
+  color: var(--ss-ink);
+}
+
+.ss-hero-title-line {
+  display: block;
+  width: 100%;
+  font-size: clamp(26px, 4.2vh, 52px);
+  line-height: 1.08;
+  letter-spacing: 0.02em;
+}
+
+.ss-hero-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: clamp(12px, 2vw, 28px);
+  align-items: stretch;
+  flex: 1;
+  min-height: 0;
+}
+
+.ss-hero-side {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: visible;
+}
+
+.ss-topic-cards {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(6px, 1vh, 12px);
+  height: 100%;
+  min-height: 0;
+  overflow: visible;
+}
+
+.ss-topic-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  border: 1px solid var(--ss-border);
+  border-radius: 18px;
+  background: linear-gradient(
+    180deg,
+    rgba(234, 247, 255, 0.75) 0%,
+    rgba(255, 255, 255, 0.78) 100%
+  );
+  backdrop-filter: blur(14px);
+  box-shadow: 0 10px 28px rgba(59, 33, 21, 0.08);
+  overflow: visible;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 32px rgba(59, 33, 21, 0.12);
+  }
+}
+
+.ss-topic-card-visual {
+  position: absolute;
+  top: -10px;
+  left: -14px;
+  right: -14px;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.ss-topic-card-image {
+  display: block;
+  width: auto;
+  max-width: 135%;
+  height: 88%;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: drop-shadow(0 8px 16px rgba(59, 33, 21, 0.12));
+}
+
+.ss-topic-card-body {
+  position: relative;
+  z-index: 3;
+  margin-top: auto;
+  padding: clamp(8px, 1.2vh, 12px) clamp(10px, 1.4vw, 14px);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.9) 40%,
+    rgba(255, 255, 255, 0.97) 100%
+  );
+  backdrop-filter: blur(8px);
+  border-radius: 0 0 17px 17px;
+}
+
+.ss-topic-card-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Rye", "Georgia", serif;
+  font-size: clamp(0.9rem, 1.6vh, 1.1rem);
+  font-weight: 400;
+  margin: 0 0 2px;
+  color: var(--ss-brown-dark);
+  line-height: 1.2;
+}
+
+.ss-topic-card-star {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--ss-brown-dark);
+  border-radius: 50%;
+  background: var(--ss-yellow);
+  color: var(--ss-brown-dark);
+  font-family: "Space Grotesk", "Helvetica", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.ss-topic-card p {
+  margin: 0;
+  padding-left: 30px;
+  font-family: "Space Grotesk", "Helvetica", sans-serif;
+  font-size: clamp(0.72rem, 1.2vh, 0.82rem);
+  font-weight: 500;
+  line-height: 1.35;
+  color: rgba(23, 19, 15, 0.65);
+}
+
+.ss-hero-cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 12px;
+  flex-shrink: 0;
+}
+
+.ss-btn-ready {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 280px;
+  padding: clamp(16px, 2.2vh, 20px) clamp(32px, 4vw, 44px);
+  font-size: clamp(1.25rem, 2.5vh, 1.55rem);
+  text-decoration: none;
+
+  &:hover {
+    transform: translateY(-3px) scale(1.02);
+  }
+}
+
+.ss-page {
+  overflow: hidden;
+}
+
+@media (max-width: 1199px) {
+  .ss-hero-home {
+    height: auto;
+    max-height: none;
+    overflow: visible;
+    padding: 100px 0 40px;
+  }
+
+  .ss-hero-container {
+    height: auto;
+  }
+
+  .ss-page {
+    overflow: visible;
+  }
+
+  .ss-hero-body {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    flex: none;
+  }
+
+  .ss-topic-cards {
+    height: auto;
+    gap: 14px;
+  }
+
+  .ss-topic-card {
+    flex: none;
+    min-height: 180px;
+  }
+
+  .ss-topic-card-image {
+    height: 82%;
+    max-width: 128%;
+  }
+
+  .ss-hero-cta {
+    grid-column: 1 / -1;
+    order: 3;
+    margin-top: 8px;
+  }
+
+  .ss-hero-side--left {
+    order: 1;
+  }
+
+  .ss-hero-side--right {
+    order: 2;
+  }
+}
+
+@media (max-width: 767px) {
+  .ss-hero-body {
+    grid-template-columns: 1fr;
+  }
+
+  .ss-topic-card {
+    min-height: 200px;
+  }
+
+  .ss-btn-ready {
+    min-width: 260px;
+    font-size: 1.2rem;
+  }
+}

@@ -11,18 +11,6 @@
 
     <div class="collapse navbar-collapse justify-content-end" id="mainNavbar">
       <ul class="navbar-nav align-items-lg-center gap-lg-3">
-        <li class="nav-item">
-          <a href="#how-it-works" class="nav-link">How it works</a>
-        </li>
-
-        <li class="nav-item">
-          <a href="#features" class="nav-link">Features</a>
-        </li>
-
-        <li class="nav-item">
-          <a href="#pricing" class="nav-link">Pricing</a>
-        </li>
-
         <% if user_signed_in? %>
           <li class="nav-item">
             <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "btn ss-btn-outline" %>
@@ -33,7 +21,7 @@
           </li>
 
           <li class="nav-item">
-            <%= link_to "Try free", new_user_registration_path, class: "btn ss-btn-primary" %>
+            <%= link_to "Try for Free", new_user_registration_path, class: "ss-btn-primary" %>
           </li>
         <% end %>
       </ul>

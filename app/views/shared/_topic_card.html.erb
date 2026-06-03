@@ -1,0 +1,13 @@
+<article class="ss-topic-card">
+  <div class="ss-topic-card-visual">
+    <%= image_tag card[:image], class: "ss-topic-card-image", alt: card[:title] %>
+  </div>
+
+  <div class="ss-topic-card-body">
+    <h3 class="ss-topic-card-title">
+      <span class="ss-topic-card-star" aria-hidden="true">★</span>
+      <%= card[:title] %>
+    </h3>
+    <p><%= card[:text] %></p>
+  </div>
+</article>

@@ -1,0 +1,21 @@
+<%
+  left_cards = [
+    { title: "Problem", text: "Is the pain acute — or just nice-to-have?", image: "cards/card_problem.png" },
+    { title: "Market", text: "TAM, SAM, SOM — is the opportunity large enough?", image: "cards/card_market.png" },
+    { title: "Customer", text: "Who pays, and do they have budget?", image: "cards/card_customer.png" }
+  ]
+
+  right_cards = [
+    { title: "Competition", text: "Direct, indirect rivals — and your wedge", image: "cards/card_competition.png" },
+    { title: "Unit Economics", text: "CAC, LTV, pricing — does the math work?", image: "cards/card_economics.png" },
+    { title: "Demand Signals", text: "Behavior and payment — not vanity metrics", image: "cards/card_demand.png" }
+  ]
+
+  cards = side == :left ? left_cards : right_cards
+%>
+
+<div class="ss-topic-cards">
+  <% cards.each do |card| %>
+    <%= render "shared/topic_card", card: card %>
+  <% end %>
+</div>
