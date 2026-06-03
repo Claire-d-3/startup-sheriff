@@ -1,5 +1,7 @@
 <%= simple_form_for(@project) do |f| %>
   <%= f.input :title %>
-  <%= f.input :problem_context, as: :text, label: 'What exact problem are you solving, for whom, and when does this problem happen?' %>
+  <%= f.input :problem_context, as: :text, label: 'What exact problem are you solving, for whom, and when does this problem happen ?' %>
+  <%= f.input :current_solution, as: :text, label: 'How do people solve this problem today, and why would your solution be meaningfully better ?' %>
+  <%= f.input :business_model, as: :text, label: 'How will you make money, what will you charge, what are your main costs, and what proof do you have that people want this ?' %>
   <%= f.submit %>
 <% end %>

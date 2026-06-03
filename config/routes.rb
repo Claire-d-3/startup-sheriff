@@ -9,11 +9,11 @@ Rails.application.routes.draw do
   end
 
   resources :projects do
-   resources :chat_threads
+   resources :chat
   end
 
-  resources :chat_threads do
-   resources :chat_messages
+  resources :chat do
+   resources :messages
   end
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

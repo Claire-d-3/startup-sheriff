@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_02_084328) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_03_090446) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -23,11 +23,30 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_02_084328) do
     t.index ["project_id"], name: "index_cards_on_project_id"
   end
 
+  create_table "chats", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.bigint "project_id", null: false
+    t.string "title"
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_chats_on_project_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.bigint "chat_id", null: false
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.string "role"
+    t.datetime "updated_at", null: false
+    t.index ["chat_id"], name: "index_messages_on_chat_id"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "business_model"
+    t.string "content"
     t.datetime "created_at", null: false
     t.string "current_solution"
     t.string "problem_context"
+    t.text "system_prompt"
     t.string "title"
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
@@ -48,5 +67,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_02_084328) do
   end
 
   add_foreign_key "cards", "projects"
+  add_foreign_key "chats", "projects"
+  add_foreign_key "messages", "chats"
   add_foreign_key "projects", "users"
 end

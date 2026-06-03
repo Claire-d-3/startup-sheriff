@@ -10,3 +10,37 @@
     <p><%= card.content %></p>
   </div>
 <% end %>
+
+<div class="row">
+  <div class="col">
+    <h1><%= @project.title %></h1>
+    <%= @project.content %>
+  </div>
+  <div class="col-md-3">
+    <h2>Chats</h2>
+    <div class="mb-4">
+      <% if !@chats.nil? %>
+        <ul>
+          <% @chats.each do |chat| %>
+            <li><%= link_to chat.title, chat_path(chat) %></li>
+          <% end %>
+        </ul>
+      <% else %>
+        There are no chats yet.
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <h1><%= @project.title %></h1>
+    <%= @project.content %>
+  </div>
+  <div class="col-md-3">
+    <h2>Chats</h2>
+    <!-- ... -->
+
+    <%= button_to "New chat", new_project_chat_path(@project), class: "btn btn-primary", method: :post %>
+  </div>
+</div>
