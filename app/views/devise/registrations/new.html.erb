@@ -1,29 +1,49 @@
-<h2>Sign up</h2>
+<div class="ss-auth-page">
+  <div class="container ss-auth-container">
+    <div class="ss-auth-card">
+      <div class="ss-auth-character-wrap">
+        <%= image_tag "sheriff_charakter.jpg", class: "ss-auth-character", alt: "Startup Sheriff" %>
+        <div class="ss-lasso-ring"></div>
+      </div>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+      <h1>Join the Posse</h1>
 
-  <div class="form-inputs">
-   <%= f.input :first_name,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "first name" }%>
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" }%>
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
+      <p>
+        Sign up and face the Sheriff's interrogation of your startup idea.
+      </p>
+
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "ss-auth-form" }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <div class="mb-3">
+          <%= f.text_field :first_name,
+            autofocus: true,
+            autocomplete: "given-name",
+            placeholder: "First name",
+            class: "form-control ss-input" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.email_field :email,
+            autocomplete: "email",
+            placeholder: "Email",
+            class: "form-control ss-input" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.password_field :password,
+            autocomplete: "new-password",
+            placeholder: "Password",
+            class: "form-control ss-input" %>
+        </div>
+
+        <%= f.submit "Create account", class: "btn ss-btn-primary w-100" %>
+      <% end %>
+
+      <div class="ss-auth-footer">
+        Already have an account?
+        <%= link_to "Log in", new_user_session_path %>
+      </div>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

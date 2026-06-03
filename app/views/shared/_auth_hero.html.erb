@@ -1,0 +1,48 @@
+<div class="ss-auth-hero" data-controller="auth-panel">
+  <div class="ss-auth-hero-tabs" role="tablist">
+    <button type="button"
+      class="ss-auth-hero-tab is-active"
+      role="tab"
+      aria-selected="true"
+      data-auth-panel-target="signupTab"
+      data-action="click->auth-panel#showSignup">
+      Sign up
+    </button>
+
+    <button type="button"
+      class="ss-auth-hero-tab"
+      role="tab"
+      aria-selected="false"
+      data-auth-panel-target="signinTab"
+      data-action="click->auth-panel#showSignin">
+      Sign in
+    </button>
+  </div>
+
+  <div data-auth-panel-target="signupPanel">
+    <p class="ss-auth-hero-text">
+      Create your account and let the Sheriff interrogate your startup idea.
+    </p>
+
+    <div class="ss-auth-hero-fields">
+      <input type="text" class="form-control ss-input" placeholder="First name" disabled aria-hidden="true" tabindex="-1">
+      <input type="email" class="form-control ss-input" placeholder="Email" disabled aria-hidden="true" tabindex="-1">
+      <input type="password" class="form-control ss-input" placeholder="Password" disabled aria-hidden="true" tabindex="-1">
+    </div>
+
+    <%= link_to "Create account", new_user_registration_path, class: "btn ss-btn-primary w-100 ss-auth-hero-cta" %>
+  </div>
+
+  <div class="d-none" data-auth-panel-target="signinPanel">
+    <p class="ss-auth-hero-text">
+      Welcome back. Log in and continue your validation.
+    </p>
+
+    <div class="ss-auth-hero-fields">
+      <input type="email" class="form-control ss-input" placeholder="Email" disabled aria-hidden="true" tabindex="-1">
+      <input type="password" class="form-control ss-input" placeholder="Password" disabled aria-hidden="true" tabindex="-1">
+    </div>
+
+    <%= link_to "Log in", new_user_session_path, class: "btn ss-btn-primary w-100 ss-auth-hero-cta" %>
+  </div>
+</div>

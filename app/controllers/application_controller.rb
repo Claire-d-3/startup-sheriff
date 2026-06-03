@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   stale_when_importmap_changes
 
   before_action :authenticate_user!
-
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected

@@ -1,2 +1,24 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="ss-page">
+  <section class="ss-hero-home">
+    <div class="container ss-hero-container">
+      <h1 class="ss-hero-title">
+        <span class="ss-hero-title-line">Are you ready for an interrogation</span>
+        <span class="ss-hero-title-line">by the Sheriff?</span>
+      </h1>
+
+      <div class="ss-hero-body">
+        <aside class="ss-hero-side ss-hero-side--left">
+          <%= render "shared/topic_cards", side: :left %>
+        </aside>
+
+        <div class="ss-hero-cta">
+          <%= link_to "Yes, I am ready", new_user_registration_path, class: "ss-btn-primary ss-btn-ready" %>
+        </div>
+
+        <aside class="ss-hero-side ss-hero-side--right">
+          <%= render "shared/topic_cards", side: :right %>
+        </aside>
+      </div>
+    </div>
+  </section>
+</div>
