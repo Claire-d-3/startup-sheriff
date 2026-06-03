@@ -24,7 +24,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_02_084328) do
   end
 
   create_table "projects", force: :cascade do |t|
+    t.string "business_model"
     t.datetime "created_at", null: false
+    t.string "current_solution"
+    t.string "problem_context"
     t.string "title"
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false

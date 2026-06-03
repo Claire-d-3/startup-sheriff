@@ -1,0 +1,5 @@
+<%= simple_form_for(@project) do |f| %>
+  <%= f.input :title %>
+  <%= f.input :problem_context, as: :text, label: 'What exact problem are you solving, for whom, and when does this problem happen?' %>
+  <%= f.submit %>
+<% end %>

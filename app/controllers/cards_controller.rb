@@ -1,21 +1,7 @@
 class CardsController < ApplicationController
   before_action :set_project
 
-  def index
-    @cards = Card.new
-  end
-
-  def show
-    @card = @project.cards.find(params[:id])
-  end
-
-  def create
-    @card = @project.cards.build(card_params)
-    if @card.save
-      redirect_to project_cards_path(@project)
-    else
-      render :index
-    end
+  def edit
   end
 
   def update
