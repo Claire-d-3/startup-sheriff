@@ -1,2 +1,12 @@
-<h1>Projects#show</h1>
-<p>Find me in app/views/projects/show.html.erb</p>
+<h1><%= @project.title %></h1>
+
+<%= link_to "← Retour", projects_path %>
+
+<hr>
+
+<% @cards.each do |card| %>
+  <div style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
+    <h3><%= card.category %></h3>
+    <p><%= card.content %></p>
+  </div>
+<% end %>
