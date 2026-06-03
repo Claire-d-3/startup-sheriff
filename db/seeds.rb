@@ -7,3 +7,28 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+#
+User.destroy_all
+Project.destroy_all
+Card.destroy_all
+
+10.times do
+  user = User.create!(
+    email: Faker::Internet.unique.email,
+    password: "password123",
+    first_name: Faker::Name.first_name
+  )
+
+  rand(1..3).times do
+    project = user.projects.create!(
+      title: Faker::Company.catch_phrase
+    )
+
+    ["Problème", "Solution", "Business Model", "Marketing", "Concurrence"].each do |category|
+      project.cards.create!(
+        category: category,
+        content: Faker::Lorem.paragraph(sentence_count: 3)
+      )
+    end
+  end
+end
