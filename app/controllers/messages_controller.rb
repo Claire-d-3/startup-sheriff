@@ -1,25 +1,19 @@
 class MessagesController < ApplicationController
-  SYSTEM_PROMPT = "You are Startup Sheriff, a direct and focused AI assistant that helps users describe their startup idea clearly through a chat interface.
-Your job is not to validate, judge, score, or create cards yet.
-Your only goal is to collect clear user input about: the target customer, the painful problem, when the problem happens, current alternatives, why the new solution is better, business model, expected costs, and existing demand evidence.
-Ask one short question at a time and challenge vague answers with practical follow-up questions.
-Keep the conversation concise, direct, and easy for a founder to answer.
-When enough information is collected, summarize the startup idea in structured form and ask the user if they want to continue."
+  SYSTEM_PROMPT = "You are Startup Sheriff, a direct and focused AI assistant that helps users describe their startup idea clearly through a chat interface."
+
+  before_action :set_project
 
   def create
-    @chat = current_user.chats.find(params[:chat_id])
-    @project = @chat.project
-
-    @message = Message.new(message_params)
-    @message.chat = @chat
+    @message = @project.chat.messages.build(message_params)
     @message.role = "user"
 
     if @message.save
-      ruby_llm_chat = RubyLLM.chat
-      response = ruby_llm_chat.with_instructions(instructions).ask(@message.content)
-      Message.create(role: "assistant", content: response.content, chat: @chat)
+      @ruby_llm_chat = RubyLLM.chat
+      build_conversation_history
+      response = @ruby_llm_chat.with_instructions(instructions).ask(@message.content)
+      @assistent_message = Message.create(role: "assistant", content: response.content, chat: @project.chat)
 
-      redirect_to chat_path(@chat)
+      redirect_to chat_project_path(@project)
     else
       render "chats/show", status: :unprocessable_entity
     end
@@ -27,16 +21,29 @@ When enough information is collected, summarize the startup idea in structured f
 
   private
 
+  def project_context
+    "This is my startup idea:
+    - content : #{@project.content}
+    - problem context : #{@project.problem_context}
+    - current solution : #{@project.current_solution}
+    - business model : #{@project.business_model}"
+  end
+
+  def instructions
+    [SYSTEM_PROMPT, project_context, @project.system_prompt].compact.join("\n\n")
+  end
+
   def message_params
     params.require(:message).permit(:content)
   end
 
-  def project_context
-    "Here is the context of the project: #{@project.content}."
+  def set_project
+    @project = Project.find(params[:project_id])
   end
 
-  def instructions
-    [SYSTEM_PROMPT, project_context, @project.system_prompt]
-      .compact.join("\n\n")
+  def build_conversation_history
+    @project.chat.messages.each do |message|
+      @ruby_llm_chat.add_message(message)
+    end
   end
 end
