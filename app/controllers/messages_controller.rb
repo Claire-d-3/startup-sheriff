@@ -8,10 +8,14 @@ class MessagesController < ApplicationController
     @message.role = "user"
 
     if @message.save
-      @ruby_llm_chat = RubyLLM.chat
-      build_conversation_history
-      response = @ruby_llm_chat.with_instructions(instructions).ask(@message.content)
-      @assistent_message = Message.create(role: "assistant", content: response.content, chat: @project.chat)
+      chat = RubyLLM.chat
+      build_conversation_history(chat)
+      response = chat.with_instructions(instructions).ask(@message.content)
+
+      @project.chat.messages.create!(
+        role: "assistant",
+        content: response.content
+      )
 
       redirect_to chat_project_path(@project)
     else
@@ -21,16 +25,19 @@ class MessagesController < ApplicationController
 
   private
 
-  def project_context
-    "This is my startup idea:
-    - content : #{@project.content}
-    - problem context : #{@project.problem_context}
-    - current solution : #{@project.current_solution}
-    - business model : #{@project.business_model}"
-  end
+  # def project_context
+  #   "This is my startup idea:
+  #   - content : #{@project.content}
+  #   - problem context : #{@project.problem_context}
+  #   - current solution : #{@project.current_solution}
+  #   - business model : #{@project.business_model}"
+  # end
 
   def instructions
-    [SYSTEM_PROMPT, project_context, @project.system_prompt].compact.join("\n\n")
+    [
+      SYSTEM_PROMPT,
+      ProjectContextBuilder.call(@project)
+    ].join("\n\n")
   end
 
   def message_params
@@ -41,9 +48,12 @@ class MessagesController < ApplicationController
     @project = Project.find(params[:project_id])
   end
 
-  def build_conversation_history
+  def build_conversation_history(chat)
     @project.chat.messages.each do |message|
-      @ruby_llm_chat.add_message(message)
+      chat.add_message(
+        role: message.role.to_sym,
+        content: message.content
+      )
     end
   end
 end
