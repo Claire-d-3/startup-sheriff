@@ -21,8 +21,24 @@
 </div>
 
 <div id="new_message_container">
-  <%= simple_form_for [@project, @message] do |f| %>
-    <%= f.input :content, label: "Ask a question", required: true, placeholder: "What's your startup idea ?" %>
-    <%= f.button :submit, 'Ask LLM', class: 'btn btn-primary' %>
+  <%= simple_form_for [@project, @message],
+      html: {
+        data: {
+          controller: "chat-form"
+        }
+      } do |f| %>
+
+    <%= f.input :content,
+        label: "Ask a question",
+        required: true,
+        placeholder: "What's your startup idea ?",
+        input_html: {
+          data: {
+            action: "keydown->chat-form#submit"
+          }
+        } %>
+
+    <%= f.button :submit, "Ask Sheriff", class: "btn btn-primary" %>
+
   <% end %>
 </div>
