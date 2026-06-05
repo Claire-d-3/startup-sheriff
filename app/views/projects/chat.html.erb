@@ -1,6 +1,6 @@
-<h1 id="chat_title"><%= @chat.title %></h1>
+<h1 id="chat_title"><%= @project.title %></h1>
 
-<%= link_to "← #{@chat.project}", project_path(@chat.project) %>
+<%= link_to "Cards of project", project_path(@chat.project) %>
 
 <div id="messages">
   <% @chat.messages.each do |message| %>
