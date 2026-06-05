@@ -1,27 +1,48 @@
-<h1><%= @project.title %></h1>
-
-<%= link_to "My projects", projects_path %>
-
-<hr>
-
-<% @cards.each do |card| %>
-  <div style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
-    <h3><%= card.category %></h3>
-    <p><%= card.content %></p>
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1><%= @project.title %></h1>
+    <%= link_to "My projects", projects_path, class: "btn btn-outline-secondary" %>
   </div>
-<% end %>
 
-<div class="row">
-  <div class="col">
-    <%= @project.content %>
+  <div class="row g-4">
+    <% @cards.each do |card| %>
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="project-card h-100">
+          <h3><%= card.category %></h3>
+
+          <% if params[:edit_card_id].to_i == card.id %>
+            <%= simple_form_for [@project, card] do |f| %>
+              <%= f.input :content,
+                as: :text,
+                label: false,
+                input_html: { rows: 6 } %>
+
+              <div class="mt-3 d-flex gap-2">
+                <%= f.button :submit, "Save Card", class: "btn btn-primary" %>
+                <%= link_to "Cancel", project_path(@project), class: "btn btn-outline-secondary" %>
+              </div>
+            <% end %>
+          <% else %>
+            <p class="project-card-content"><%= card.content %></p>
+
+            <%= link_to "Edit Card",
+              project_path(@project, edit_card_id: card.id),
+              class: "btn btn-outline-primary mt-auto" %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
   </div>
-  <div class="col-md-3">
-    <h2>Chats</h2>
-    <div class="mb-4">
-      <% @project.chat.title %>
+
+  <div class="chat-box mt-5">
+    <h2>Chat</h2>
+
+    <div class="mb-3">
+      <p><%= "Continue the conversation with Startup Sheriff." %></p>
     </div>
-  </div>
-    <%= link_to "Open chat", chat_project_path(@project), class: "btn btn-primary" %>
-</div>
 
-    <!-- ... -->
+    <%= link_to "Talk to Sheriff",
+      chat_project_path(@project),
+      class: "btn btn-primary chat-button" %>
+  </div>
+</div>
