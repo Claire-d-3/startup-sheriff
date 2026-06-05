@@ -1,0 +1,101 @@
+.project-form-page {
+  max-width: 960px;
+}
+
+.project-form-wrapper {
+  margin-top: 40px;
+}
+
+.project-form-header {
+  margin-bottom: 28px;
+  text-align: center;
+
+  h1 {
+    margin-bottom: 12px;
+    font-size: clamp(42px, 5vw, 64px);
+    line-height: 0.95;
+    font-weight: 900;
+  }
+
+  p {
+    max-width: 620px;
+    margin: 0 auto;
+    color: rgba(23, 19, 15, 0.68);
+    font-size: 1.05rem;
+  }
+}
+
+.project-form-kicker {
+  margin-bottom: 10px !important;
+  color: rgba(23, 19, 15, 0.58);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.project-form-card {
+  padding: 36px;
+  border: 1px solid rgba(23, 19, 15, 0.08);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 18px 45px rgba(23, 19, 15, 0.08);
+
+  label {
+    margin-bottom: 8px;
+    font-weight: 800;
+    color: #17130f;
+  }
+
+  .form-text {
+    color: rgba(23, 19, 15, 0.55);
+  }
+}
+
+.project-form-input,
+.project-form-textarea {
+  border-radius: 16px;
+  border: 1px solid rgba(23, 19, 15, 0.14);
+  background: rgba(255, 255, 255, 0.86);
+  padding: 14px 16px;
+  font-size: 1rem;
+
+  &:focus {
+    border-color: #f4b942;
+    box-shadow: 0 0 0 4px rgba(244, 185, 66, 0.22);
+  }
+}
+
+.project-form-textarea {
+  resize: vertical;
+}
+
+.project-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 28px;
+
+  .btn {
+    border-radius: 999px;
+    font-weight: 800;
+    padding: 12px 22px;
+  }
+}
+
+.project-form-submit {
+  min-width: 180px;
+}
+
+@media (max-width: 768px) {
+  .project-form-card {
+    padding: 24px;
+  }
+
+  .project-form-actions {
+    flex-direction: column-reverse;
+
+    .btn {
+      width: 100%;
+    }
+  }
+}

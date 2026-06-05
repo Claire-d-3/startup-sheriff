@@ -1,7 +1,43 @@
-<%= simple_form_for(@project) do |f| %>
-  <%= f.input :title %>
-  <%= f.input :problem_context, as: :text, label: 'What exact problem are you solving, for whom, and when does this problem happen ?' %>
-  <%= f.input :current_solution, as: :text, label: 'How do people solve this problem today, and why would your solution be meaningfully better ?' %>
-  <%= f.input :business_model, as: :text, label: 'How will you make money, what will you charge, what are your main costs, and what proof do you have that people want this ?' %>
-  <%= f.submit %>
-<% end %>
+<div class="container py-5 project-form-page">
+  <div class="project-form-wrapper">
+    <div class="project-form-header">
+      <p class="project-form-kicker">Startup Sheriff</p>
+      <h1>Start a new interrogation</h1>
+      <p>
+        Answer these questions clearly. The Sheriff will use them to understand your startup idea.
+      </p>
+    </div>
+
+    <div class="project-form-card">
+      <%= simple_form_for(@project) do |f| %>
+        <%= f.input :title,
+          label: "Project title",
+          placeholder: "Example: LinaLink",
+          input_html: { class: "project-form-input" } %>
+
+        <%= f.input :problem_context,
+          as: :text,
+          label: "What exact problem are you solving, for whom, and when does this problem happen?",
+          placeholder: "Example: Social media agencies with 20+ accounts struggle to track content, performance and workflow across platforms...",
+          input_html: { rows: 5, class: "project-form-textarea" } %>
+
+        <%= f.input :current_solution,
+          as: :text,
+          label: "How do people solve this problem today, and why would your solution be meaningfully better?",
+          placeholder: "Example: They use spreadsheets, Notion, Hootsuite or manual reporting. Our solution combines...",
+          input_html: { rows: 5, class: "project-form-textarea" } %>
+
+        <%= f.input :business_model,
+          as: :text,
+          label: "How will you make money, what will you charge, what are your main costs, and what proof do you have that people want this?",
+          placeholder: "Example: Monthly SaaS subscription at €49/month. Main costs are API usage and hosting. I already talked to...",
+          input_html: { rows: 5, class: "project-form-textarea" } %>
+
+        <div class="project-form-actions">
+          <%= link_to "Cancel", projects_path, class: "btn btn-outline-secondary" %>
+          <%= f.submit "Create project", class: "btn btn-primary project-form-submit" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
