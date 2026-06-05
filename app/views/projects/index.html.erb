@@ -1,19 +1,62 @@
-<h1>My projects</h1>
+<div class="container py-5 projects-index-page">
+  <div class="projects-index-header mb-5">
+    <div>
+      <p class="projects-index-kicker">Startup Sheriff</p>
+      <h1>My projects</h1>
+      <p class="projects-index-subtitle">
+        Review your startup ideas, continue your analysis, or start a new interrogation.
+      </p>
+    </div>
 
-<%= link_to "Create new project", new_project_path %>
-
-<% @projects.each do |project| %>
-  <div class="d-flex align-items-center justify-content-between mb-3">
-    <h2 class="mb-0">
-      <%= link_to project.title, project_path(project) %>
-    </h2>
-
-    <%= link_to "Delete",
-        project,
-        class: "btn btn-outline-warning btn-sm",
-        data: {
-          turbo_method: :delete,
-          turbo_confirm: "Are you sure?"
-        } %>
+    <%= link_to "Create new project",
+      new_project_path,
+      class: "btn btn-primary projects-create-button" %>
   </div>
-<% end %>
+
+  <% if @projects.any? %>
+    <div class="row g-4">
+      <% @projects.each do |project| %>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="project-overview-card h-100">
+            <div class="project-overview-card-body">
+              <div class="project-overview-icon">
+                ★
+              </div>
+
+              <h2>
+                <%= link_to project.title, project_path(project), class: "project-overview-title" %>
+              </h2>
+
+              <p>
+                Open this project to review cards, edit the analysis, and continue the Sheriff chat.
+              </p>
+            </div>
+
+            <div class="project-overview-actions">
+              <%= link_to "Open project",
+                project_path(project),
+                class: "btn btn-outline-primary" %>
+
+              <%= link_to "Delete",
+                project,
+                class: "btn btn-outline-warning",
+                data: {
+                  turbo_method: :delete,
+                  turbo_confirm: "Are you sure?"
+                } %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="projects-empty-state">
+      <h2>No projects yet</h2>
+      <p>Create your first startup idea and let the Sheriff interrogate it.</p>
+
+      <%= link_to "Create first project",
+        new_project_path,
+        class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
