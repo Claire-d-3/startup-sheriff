@@ -1,17 +1,19 @@
 <h1>My projects</h1>
 
-<%= link_to "Create new project",
-  new_project_path(@project)%>
+<%= link_to "Create new project", new_project_path %>
 
 <% @projects.each do |project| %>
-  <div>
-    <h2><%= link_to project.title, project_path(project) %></h2>
+  <div class="d-flex align-items-center justify-content-between mb-3">
+    <h2 class="mb-0">
+      <%= link_to project.title, project_path(project) %>
+    </h2>
 
     <%= link_to "Delete",
-    project,
-    data:
-    {turbo_method: :delete,
-    turbo_confirm: "Are you sure?"}
-    %>
+        project,
+        class: "btn btn-outline-warning btn-sm",
+        data: {
+          turbo_method: :delete,
+          turbo_confirm: "Are you sure?"
+        } %>
   </div>
 <% end %>

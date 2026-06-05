@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg ss-navbar">
   <div class="container">
     <%= link_to root_path, class: "navbar-brand ss-brand" do %>
       <span class="ss-logo-mark">★</span>
@@ -9,18 +9,21 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse justify-content-end" id="mainNavbar">
-      <ul class="navbar-nav align-items-lg-center gap-lg-3">
+   <div class="collapse navbar-collapse" id="mainNavbar">
+  <ul class="navbar-nav align-items-lg-center w-100">
         <% if user_signed_in? %>
           <li class="nav-item">
+            <%= link_to "My Projects", projects_path, class: "btn ss-btn-outline ms-4" %>
+          </li>
+          <li class="nav-item ms-auto">
             <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "btn ss-btn-outline" %>
           </li>
         <% else %>
-          <li class="nav-item">
+          <li class="nav-item ms-auto">
             <%= link_to "Log in", new_user_session_path, class: "nav-link" %>
           </li>
 
-          <li class="nav-item">
+          <li class="nav-item ms-3">
             <%= link_to "Try for Free", new_user_registration_path, class: "ss-btn-primary" %>
           </li>
         <% end %>
