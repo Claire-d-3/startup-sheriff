@@ -6,5 +6,12 @@
 <% @projects.each do |project| %>
   <div>
     <h2><%= link_to project.title, project_path(project) %></h2>
+
+    <%= link_to "Delete",
+    project,
+    data:
+    {turbo_method: :delete,
+    turbo_confirm: "Are you sure?"}
+    %>
   </div>
 <% end %>
