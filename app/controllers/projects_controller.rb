@@ -36,7 +36,7 @@ class ProjectsController < ApplicationController
   end
 
   def chat
-    @project = Project.find(params[:id])
+    @project = current_user.projects.find(params[:id])
     @chat = @project.chat
 
     @message = Message.new
@@ -48,12 +48,6 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(
-      :title,
-      :problem_context,
-      :current_solution,
-      :business_model,
-      :content
-    )
+    params.require(:project).permit(:title, :problem_context, :current_solution, :business_model)
   end
 end
