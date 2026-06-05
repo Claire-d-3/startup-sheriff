@@ -42,7 +42,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_03_090446) do
 
   create_table "projects", force: :cascade do |t|
     t.string "business_model"
-    t.text "content"
+    t.string "content"
     t.datetime "created_at", null: false
     t.string "current_solution"
     t.string "problem_context"

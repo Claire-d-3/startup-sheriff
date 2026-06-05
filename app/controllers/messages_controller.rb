@@ -11,7 +11,7 @@ class MessagesController < ApplicationController
       @ruby_llm_chat = RubyLLM.chat
       build_conversation_history(except_message: @message)
       response = @ruby_llm_chat.with_instructions(instructions).ask(@message.content)
-      @assistent_message = Message.create(role: "assistant", content: response.content, chat: @project.chat)
+      @assistant_message = Message.create(role: "assistant", content: response.content, chat: @project.chat)
       CardRefresher.new(project: @project).refresh!
 
       redirect_to chat_project_path(@project)
@@ -27,7 +27,10 @@ class MessagesController < ApplicationController
   end
 
   def instructions
-    [SYSTEM_PROMPT, project_context, @project.system_prompt].compact.join("\n\n")
+    [
+      SYSTEM_PROMPT,
+      ProjectContextBuilder.call(@project)
+    ].join("\n\n")
   end
 
   def message_params
