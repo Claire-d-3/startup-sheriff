@@ -23,6 +23,7 @@ class ProjectsController < ApplicationController
     @chat.project = @project
 
     if @project.save && @chat.save
+      CardRefresher.new(project: @project).refresh!
       redirect_to project_path(@project.id)
     else
       render :new, status: :unprocessable_entity
