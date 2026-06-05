@@ -6,8 +6,11 @@ class CardsController < ApplicationController
 
   def update
     @card = @project.cards.find(params[:id])
-    @card.update(card_params)
-    redirect_to project_cards_path(@project)
+    if @card.update(card_params)
+    redirect_to project_path(@project)
+    else
+    redirect_to project_cards_path(@project, edit_card_id: @card_id)
+    end
   end
 
   #   def create
@@ -28,7 +31,7 @@ class CardsController < ApplicationController
   private
 
   def set_project
-    @project = Project.find(params[:project_id])
+    @project = current_user.projects.find(params[:project_id])
   end
 
   def card_params
